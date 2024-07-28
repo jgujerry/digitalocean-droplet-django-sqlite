@@ -1,16 +1,16 @@
-# digitalocean-django-sqlite
+# digitalocean-django-app
 
 Example Django application deployed on DigitalOcean
 
 
-## Example Django application
+## Example Django app
 
 If you like to check this example project at localhost, please follow instructions below to run this Django application on your machine.
 
 1. Clone this repo,
 
 ```bash
-$ git clone https://github.com/jgujerry/digitalocean-django-sqlite.git
+$ git clone https://github.com/jgujerry/digitalocean-django-app.git
 ```
 
 2. Create a `.venv` environment,
@@ -37,4 +37,4 @@ $ python manage.py runserver
 
 Then visit the site locally [`http://127.0.0.1:8000`](http://127.0.0.1:8000)
 
-##
+
