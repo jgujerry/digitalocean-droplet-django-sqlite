@@ -38,3 +38,9 @@ $ python manage.py runserver
 Then visit the site locally [`http://127.0.0.1:8000`](http://127.0.0.1:8000)
 
 
+## Deploy Django app
+
+
+Steps about how to deploy this Django app on DigitalOcean with droplet.
+
+
