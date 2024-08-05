@@ -1,6 +1,6 @@
 # digitalocean-django-app
 
-Example Django application deployed on DigitalOcean
+This is an example Django application deployed on DigitalOcean.
 
 
 ## Example Django app
