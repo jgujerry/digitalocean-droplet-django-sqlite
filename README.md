@@ -91,4 +91,16 @@ Quantity: 1
 Hostname: ubuntu-s-1vcpu-512mb-10gb-xxx-xx
 
 
-3. Manage droplet
+3. Connect to Droplet
+
+
+On droplet console page, you could find its `ipv4` address. You can connect to it via `ssh`.
+
+
+```bash
+$ ssh root@xxx.xxx.xxx.xxx
+```
+
+Or you can use Droplet Console for native-like terminal access to your Droplet from the browser.
+
+
