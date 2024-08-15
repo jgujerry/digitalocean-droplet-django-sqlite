@@ -104,3 +104,24 @@ $ ssh root@xxx.xxx.xxx.xxx
 Or you can use Droplet Console for native-like terminal access to your Droplet from the browser.
 
 
+4. Manage the Droplet
+
+Update and install software
+
+```bash
+$ sudo apt update
+```
+
+
+Upgrade the system
+
+```bash
+
+$ sudo apt upgrade
+```
+
+Install system dependencies
+
+```bash
+$ sudo apt install python3-pip python3-dev libpq-dev nginx certbot python3-certbot-nginx supervisor
+```
