@@ -1,6 +1,13 @@
-# digitalocean-django-app
+# digitalocean-droplet-django-sqlite
 
 This is an example Django application deployed on DigitalOcean.
+
+* Django
+* SQLite
+* Gunicorn
+* Nginx
+* DigitalOcean Droplet
+* Let's Encrypt
 
 
 ## Example Django app
