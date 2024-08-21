@@ -132,3 +132,12 @@ Install system dependencies
 ```bash
 $ sudo apt install python3-pip python3-dev libpq-dev nginx certbot python3-certbot-nginx supervisor
 ```
+
+
+5. Pull source code
+
+Create a directory for source code,
+
+```bash
+$ mkdir /web
+```
