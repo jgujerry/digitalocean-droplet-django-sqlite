@@ -134,10 +134,25 @@ $ sudo apt install python3-pip python3-dev libpq-dev nginx certbot python3-certb
 ```
 
 
-5. Pull source code
+5. Create Python environment
 
 Create a directory for source code,
 
 ```bash
 $ mkdir /web
+$ cd /web
+$ mkdir django-sqlite
+$ cd django-sqlite
+```
+
+Install the Python3 `venv` module if need,
+
+```bash
+$ apt install -y python3-venv
+```
+
+Create the Python virtual environment,
+
+```bash
+$ python3 -m venv venv
 ```
