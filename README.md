@@ -133,6 +133,15 @@ Install system dependencies
 $ sudo apt install python3-pip python3-dev libpq-dev nginx certbot python3-certbot-nginx supervisor
 ```
 
+Add a group,
+```bash
+$ sudo groupadd --system webapp
+```
+
+Add a user,
+```bash
+$ sudo useradd --system --gid webapp --shell /bin/bash --home /web/digitalocean-droplet-django-sqlite
+```
 
 5. Create Python environment
 
