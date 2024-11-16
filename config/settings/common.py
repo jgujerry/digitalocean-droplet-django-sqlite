@@ -137,7 +137,7 @@ STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [Path(BASE_DIR).joinpath('static')]
 
-STATIC_ROOT = Path(BASE_DIR).joinpath('/var/www/html')
+STATIC_ROOT = Path(BASE_DIR).joinpath('staticfiles')
 
 # Media files (images, documents, files)
 MEDIA_URL = '/media/'
