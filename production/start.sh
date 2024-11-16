@@ -23,7 +23,7 @@ export PYTHONPATH="$PROJECT_DIR:$PYTHONPATH"
 test -d "$PRODRUN_DIR" || mkdir -p "$PRODRUN_DIR"
 
 # Start gunicorn server
-gunicorn "$DJANGO_WEB_MODULE:application" \
+gunicorn "$DJANGO_WSGI_MODULE:application" \
     --name "$PROJECT_NAME" \
     --workers "$NUM_WORKERS" \
     --timeout "$TIMEOUT" \
