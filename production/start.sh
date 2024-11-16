@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 PROJECT_NAME="digitalocean-droplet-django-sqlite"
 PROJECT_DIR="/web/$PROJECT_NAME"
