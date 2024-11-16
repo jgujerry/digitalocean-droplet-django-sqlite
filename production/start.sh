@@ -7,6 +7,10 @@ PRODRUN_DIR="$PROJECT_DIR/production"
 PRODRUN_SOCKFILE="$PRODRUN_DIR/gunicorn.sock"
 PRODRUN_LOGS_DIR="$PRODRUN_DIR/production/logs"
 
+# Ensure the production directory exists
+test -d "$PRODRUN_DIR" || mkdir -p "$PRODRUN_DIR"
+test -d "$PROJECT_LOGS_DIR" || mkdir -p "$PROJECT_LOGS_DIR"
+
 USER="webuser"
 GROUP="webapp"
 
@@ -19,9 +23,11 @@ source venv/bin/activate
 export DJANGO_SETTINGS_MODULE="config.settings.production"
 export PYTHONPATH="$PROJECT_DIR:$PYTHONPATH"
 
-# Ensure the production directory exists
-test -d "$PRODRUN_DIR" || mkdir -p "$PRODRUN_DIR"
-test -d "$PROJECT_LOGS_DIR" || mkdir -p "$PROJECT_LOGS_DIR"
+# Django static file collection, /var/www/html
+python manage.py collectstatic --no-input
+
+# Django migration
+python manage.py migrate
 
 # Start gunicorn server
 gunicorn "$DJANGO_WSGI_MODULE:application" \
