@@ -14,6 +14,7 @@ TIMEOUT=120
 NUM_WORKERS=1
 
 cd "$PROJECT_DIR" || exit 1
+echo "Current working directory: $(pwd)"
 source venv/bin/activate
 export DJANGO_SETTINGS_MODULE="config.settings.production"
 export PYTHONPATH="$PROJECT_DIR:$PYTHONPATH"
