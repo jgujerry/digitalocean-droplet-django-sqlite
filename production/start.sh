@@ -3,7 +3,7 @@
 PROJECT_NAME="digitalocean-droplet-django-sqlite"
 PROJECT_DIR="/web/$PROJECT_NAME"
 
-PRODRUN_DIR="$PROJECT_DIR/production/gunicorn"
+PRODRUN_DIR="$PROJECT_DIR/production"
 PRODRUN_SOCKFILE="$PRODRUN_DIR/gunicorn.sock"
 
 USER="webuser"
