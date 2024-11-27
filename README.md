@@ -143,16 +143,23 @@ Add a user,
 $ sudo useradd --system --gid webapp --shell /bin/bash --home /web/digitalocean-droplet-django-sqlite
 ```
 
-5. Create Python environment
+5. Clone Github repository
 
-Create a directory for source code,
+Create a `/web` directory to place the source code,
 
 ```bash
-$ mkdir /web
-$ cd /web
-$ mkdir django-sqlite
-$ cd django-sqlite
+mkdir /web
+cd /web
 ```
+
+Clone the source code from github repository,
+```bash
+$ git clone https://github.com/jgujerry/digitalocean-droplet-django-sqlite.git
+```
+As this is a public repository, it does not require credentials to clone.
+
+
+6. Create Python environment
 
 Install the Python3 `venv` module if need,
 
@@ -160,8 +167,126 @@ Install the Python3 `venv` module if need,
 $ apt install -y python3-venv
 ```
 
+Enter the project directory,
+```bash
+$ cd digitalocean-droplet-django-sqlit
+```
+
 Create the Python virtual environment,
 
 ```bash
 $ python3 -m venv venv
+```
+
+To activate this Python virtual environment, run the following command,
+```bash
+$ source venv/bin/activate
+```
+
+Remember to upgrade `pip` by running `pip install -U pip`.
+
+Then install Python packages required by this project,
+
+```bash
+$ pip install -r requirements.txt
+```
+
+7. Create a `.env` file
+
+In the project directory, create `.env` file,
+
+```bash
+$ vim .env
+```
+
+Then you can put the sensitive information, e.g. Django secret key, and/or database credentials, into the this file.
+
+8. Initialize the database
+
+Run Django migrate command to initialize the database,
+
+```bash
+$ python manage.py migrate
+```
+
+1. Test `gunicorn`
+
+Run `chown` to change the ownership of the project directory to project user specified above.
+
+```bash
+$ chown -R webuser:webapp         git config --global --add safe.directory /web/digitalocean-droplet-django-sqlite
+/web/digitalocean-droplet-django-sqlit
+```
+
+Then run the following command,
+
+```bash
+$ ./production/start.sh
+```
+
+If everything is good, you could see
+```bash
+Current working directory: /web/digitalocean-droplet-django-sqlite
+[2024-11-16 08:07:38 +0000] [1055382] [INFO] Starting gunicorn 23.0.0
+[2024-11-16 08:07:38 +0000] [1055382] [INFO] Listening at: unix:/web/digitalocean-droplet-django-sqlite/production/gunicorn.sock (1055382)
+[2024-11-16 08:07:38 +0000] [1055382] [INFO] Using worker: sync
+[2024-11-16 08:07:38 +0000] [1055383] [INFO] Booting worker with pid: 1055383
+^C[2024-11-16 08:07:40 +0000] [1055382] [INFO] Handling signal: int
+[2024-11-16 08:07:40 +0000] [1055383] [INFO] Worker exiting (pid: 1055383)
+[2024-11-16 08:07:41 +0000] [1055382] [INFO] Shutting down: Master
+```
+
+Then `Ctrl+C` to terminate the process.
+
+
+10.  Config `supervisor`
+
+Copy the supervisor config file into `/etc/supervisor/conf.d/` directory.
+
+```bash
+$ cp production/conf/supervisor.conf /etc/supervisor/conf.d/django.conf
+```
+
+Then reread the configuration files
+```bash
+$ supervisorctl reread
+```
+
+Next to update supervisor to get `gunicorn` process run,
+
+```bash
+$ supervisorctl update
+```
+
+And, we can check by running the following command,
+
+```bash
+$ supervisorctl status
+```
+
+To restart the program,
+
+```bash
+$ supervisorctl restart <program-name>
+```
+
+11. Config `nginx`
+
+Remove the default site enabled
+```bash
+$ rm /etc/nginx/sites-enabled/default
+```
+
+Copy project nginx config to location,
+
+```bash
+$ cp production/conf/nginx.conf /etc/nginx/site-enabled/django.conf
+```
+
+Then visit `http://droplet-ip-address`
+
+12. Install SSL certificate
+
+```bash
+$ certbot -d <your-domain-name>
 ```
